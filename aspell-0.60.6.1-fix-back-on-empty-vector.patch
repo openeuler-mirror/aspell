@@ -1,0 +1,38 @@
+From c6755a399e8a31cbee5129dde5124f9c54a47ab6 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Nikola=20Forr=C3=B3?= <nforro@redhat.com>
+Date: Wed, 4 Apr 2018 14:58:03 +0200
+Subject: [PATCH] Do not call back() on an empty vector
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Calling std::vector::back() on an empty container is undefined.
+Avoid doing that, simply return pointer to the beginning in case
+the vector is empty.
+
+Signed-off-by: Nikola Forró <nforro@redhat.com>
+---
+ common/vector.hpp | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/common/vector.hpp b/common/vector.hpp
+index 782e4b0..cb344bd 100644
+--- a/common/vector.hpp
++++ b/common/vector.hpp
+@@ -36,13 +36,13 @@ namespace acommon
+     }
+     T * data() {return &*this->begin();}
+     T * data(int pos) {return &*this->begin() + pos;}
+-    T * data_end() {return &this->back()+1;}
++    T * data_end() {return this->empty() ? &*this->begin() : &this->back()+1;}
+ 
+     T * pbegin() {return &*this->begin();}
+-    T * pend()   {return &this->back()+1;}
++    T * pend()   {return this->empty() ? &*this->begin() : &this->back()+1;}
+ 
+     const T * pbegin() const {return &*this->begin();}
+-    const T * pend()   const {return &this->back()+1;}
++    const T * pend()   const {return this->empty() ? &*this->begin() : &this->back()+1;}
+ 
+     template <typename U>
+     U * datap() { 
