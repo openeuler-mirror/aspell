@@ -1,11 +1,11 @@
 Name:          aspell
 Version:       0.60.6.1
-Release:       25
+Release:       26
 Summary:       Spell checker
 Epoch:         12
 License:       LGPLv2+ and LGPLv2 and GPLv2+ and BSD
 URL:           http://aspell.net/
-Source:        ftp://ftp.gnu.org/gnu/aspell/aspell-%{version}.tar.gz
+Source:        http://mirrors.ustc.edu.cn/gnu/aspell/aspell-%{version}.tar.gz
 
 Patch0000:     aspell-0.60.3-install_info.patch
 Patch0001:     aspell-0.60.5-fileconflict.patch
@@ -110,5 +110,8 @@ rm -rf ${RPM_BUILD_ROOT}%{_mandir}/man1/aspell-import.1
 %{_mandir}/man1/pspell-config.1*
 
 %changelog
+* Thu Dec 24 2020 Ge Wang<wangge20@huawei.com> - 12:0.60.6.1-26
+- Modify Source0 url
+ 
 * Wed Nov 27 2019 yangjian<yangjian79@huawei.com> - 12:0.60.6.1-25
 - Package init
