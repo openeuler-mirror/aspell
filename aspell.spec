@@ -1,11 +1,11 @@
 Name:          aspell
 Version:       0.60.6.1
-Release:       25
+Release:       27
 Summary:       Spell checker
 Epoch:         12
 License:       LGPLv2+ and LGPLv2 and GPLv2+ and BSD
 URL:           http://aspell.net/
-Source:        ftp://ftp.gnu.org/gnu/aspell/aspell-%{version}.tar.gz
+Source:        http://mirrors.ustc.edu.cn/gnu/aspell/aspell-%{version}.tar.gz
 
 Patch0000:     aspell-0.60.3-install_info.patch
 Patch0001:     aspell-0.60.5-fileconflict.patch
@@ -16,6 +16,7 @@ Patch0005:     aspell-0.60.6.1-dump-personal-abort.patch
 Patch0006:     aspell-0.60.6.1-aarch64.patch
 Patch0007:     aspell-0.60.6.1-gcc7-fixes.patch
 Patch0008:     aspell-0.60.6.1-fix-back-on-empty-vector.patch
+Patch0009:     CVE-2019-17544.patch
 
 BuildRequires: chrpath gettext ncurses-devel pkgconfig perl-interpreter gcc-c++
 
@@ -110,5 +111,11 @@ rm -rf ${RPM_BUILD_ROOT}%{_mandir}/man1/aspell-import.1
 %{_mandir}/man1/pspell-config.1*
 
 %changelog
+* Thu Jul 27 2021 houyingchao<houyingchao@huawei.com> - 12:0.60.6.1-27
+- fix CVE-2019-17544
+
+* Thu Dec 24 2020 Ge Wang<wangge20@huawei.com> - 12:0.60.6.1-26
+- Modify Source0 url
+ 
 * Wed Nov 27 2019 yangjian<yangjian79@huawei.com> - 12:0.60.6.1-25
 - Package init
